@@ -1,0 +1,10 @@
+name: Andrew Newberry
+role: ""
+photo: /images/coaches/andrew-newberry.jpg
+phone: ""          # TODO copy from rrfsc.org/coaches
+# email: coach@example.com   # TODO confirm with the coach, then remove the leading #
+specialties: []    # 2 or 3 short items, e.g. "Beginners", "Moves in the Field"
+skatingHistory: [] # bullets from the current bio
+highestStudentTest: ""
+availableForPrivateLessons: true
+order: 3

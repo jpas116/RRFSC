@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+const coaches = (await getCollection('coaches')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Coaches" description="Certified US Figure Skating coaches at Red Rose Figure Skating Club, available for private lessons at Regency Ice Rink in Lancaster, PA.">
+  <h1>Coaches</h1>
+  <p class="lead">Private lessons happen on freestyle ice and are arranged directly with the coach. Not sure who to pick? See <a href="/faqs#coaches-and-lessons">how to choose a coach</a>.</p>
+  <div class="cards">
+    {coaches.map(({ data }) => (
+      <div class="card">
+        {data.photo && <img src={data.photo} alt={`${data.name}, RRFSC coach`} width="120" height="120" loading="lazy" style="border-radius:50%;object-fit:cover" />}
+        <h3>{data.name}</h3>
+        {data.role && <p><strong>{data.role}</strong></p>}
+        {data.specialties.length > 0 && <p>{data.specialties.join(' · ')}</p>}
+        <p>
+          {data.email && <a href={`mailto:${data.email}`}>Email</a>}
+          {data.email && data.phone && ' · '}
+          {data.phone && <a href={`tel:${data.phone.replace(/\D/g, '')}`}>{data.phone}</a>}
+        </p>
+        {data.skatingHistory.length > 0 && (
+          <details><summary>Skating and coaching background</summary>
+            <ul>{data.skatingHistory.map((h) => <li>{h}</li>)}</ul>
+            {data.highestStudentTest && <p>Highest student test passed: {data.highestStudentTest}</p>}
+          </details>
+        )}
+      </div>
+    ))}
+  </div>
+</Base>

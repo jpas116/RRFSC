@@ -1,0 +1,19 @@
+title: Fall II Session
+firstClass: 2026-11-02
+lastClass: 2026-12-14
+dayAndTime: Mondays, 4:30 - 5:30 PM
+price: "$140"
+priceNote: Includes skate rental and Learn to Skate USA membership.
+classes:
+  - name: Learn to Skate (Ice Explorer through Basic 6)
+    ages: Ages 2 to 17
+    time: "4:30 - 5:30 PM"
+    registerUrl: https://redrosefigureskatingclub.regfox.com/red-rose-fall-ii-2026-monday-learn-to-skate
+  - name: Adult Learn to Skate (Adult 1-6)
+    ages: Ages 18 and up
+    time: "4:30 - 5:30 PM"
+    registerUrl: https://redrosefigureskatingclub.regfox.com/red-rose-fall-ii-2026-monday-learn-to-skate
+  - name: Aspire (Recital Edition)
+    ages: Basic 4 and above
+    time: "4:30 - 5:00 PM"   # CHECK: the Wix site lists both 4:30 and 5:00 for Aspire
+    registerUrl: https://redrosefigureskatingclub.regfox.com/red-rose-fsc-monday-aspire-fall-ii-2026-recital-edition

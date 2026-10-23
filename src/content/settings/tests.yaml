@@ -1,0 +1,35 @@
+nextDate: ""            # leave blank until a date is set; the page says "TBD"
+registrationDeadline: ""
+registerUrl: https://comp.entryeeze.com/Membership/Welcome.aspx?cid=273
+testChairName: Katie Schmitt
+testChairEmail: gofigure94@gmail.com
+nonMemberFee: "$25"
+lateFee: "$20"
+reciprocalClubs:
+  - Hershey
+  - White Rose
+  - Central Penn
+  - Body Zone
+  - Sikumi
+policies:
+  - heading: Who can test
+    items:
+      - "**USFS membership:** every applicant needs a current US Figure Skating membership and must enter their USFS number in EntryEeze."
+      - "**Other clubs:** skaters who are not RRFSC or reciprocal club members need a permission-to-test letter from their home club, uploaded in EntryEeze or emailed to the test chair."
+      - "**Coaches and partners:** must be entered in EntryEeze and meet USFS certification and background screening requirements."
+  - heading: Fees
+    items:
+      - "**Test fees** on EntryEeze include ice, hospitality and convenience charges."
+      - "**Non-member fee:** reciprocal clubs pay none; all other clubs pay an additional $25."
+      - "**Pairs and dance:** fees are charged per candidate, so each partner registers separately."
+  - heading: Deadlines and scheduling
+    items:
+      - "**Registration closes** two weeks before the test date, or when the session fills."
+      - "**Late applications** are accepted only if space remains, with a $20 late fee."
+      - "**Scheduling requests** go to the test chair before registration closes. They are not guaranteed."
+      - "**The schedule** is posted at least one week before the test date. Arrive 30 minutes before your warm-up."
+  - heading: Refunds
+    items:
+      - "**No refunds or credits** once the schedule is posted, unless RRFSC cancels the session or test."
+      - "**Illness or injury:** contact the test chair."
+      - "**Contingent tests:** fees are not refunded if the contingent test cannot be taken."

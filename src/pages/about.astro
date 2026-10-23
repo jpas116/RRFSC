@@ -1,0 +1,19 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+const club = (await getEntry('settings', 'club'))!.data;
+const board = (await getCollection('board')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="About" description={`${club.name} is a US Figure Skating member club and 501(c)(3) non-profit serving Lancaster, PA for over 20 years.`}>
+  <h1>About the club</h1>
+  <p class="lead">{club.name} is a US Figure Skating member club and 501(c)(3) non-profit. For over 20 years we've brought skaters from age 5 to 65 together at {club.rinkName} for group lessons, private coaching, tests, competitions and an annual show.</p>
+
+  <h2>Board</h2>
+  <table>
+    <thead><tr><th>Name</th><th>Role</th><th>Email</th></tr></thead>
+    <tbody>{board.map(({ data }) => <tr><td>{data.name}</td><td>{data.role}</td><td>{data.email && <a href={`mailto:${data.email}`}>{data.email}</a>}</td></tr>)}</tbody>
+  </table>
+
+  <h2>Newsletters</h2>
+  <p>Past newsletters from 2016 to 2019 are in the <a href="/newsletters">archive</a>.</p>
+</Base>

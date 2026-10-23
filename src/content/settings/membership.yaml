@@ -1,0 +1,14 @@
+season: "2026-2027"
+processingNote: Allow one full week for applications to be processed. Applications must be processed before skating on freestyle ice.
+rates:
+  - type: Home Club
+    price: "$105"
+  - type: Subsequent Skater
+    price: "$65"
+  - type: Introductory
+    price: "$60"
+  - type: Affiliate
+    price: "$65"
+  - type: Collegiate (4-year membership)
+    price: "$145"
+rateNote: Prices are the same for skaters under 18 and adults.

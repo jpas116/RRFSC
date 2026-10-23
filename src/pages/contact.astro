@@ -1,0 +1,27 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+const club = (await getEntry('settings', 'club'))!.data;
+const t = (await getEntry('settings', 'tests'))!.data;
+const board = (await getCollection('board')).sort((a, b) => a.data.order - b.data.order);
+const who = [
+  ['Learn to Skate classes', club.learnToSkateEmail],
+  ['Membership', club.membershipChairEmail],
+  ['Test sessions', t.testChairEmail],
+  ['Anything else', club.generalEmail],
+];
+---
+<Base title="Contact" description={`Contact ${club.name} in Lancaster, PA about Learn to Skate, membership, test sessions or anything else.`}>
+  <h1>Contact</h1>
+  <p class="lead">{club.name}<br />{club.address}<br />Skating at <a href={club.rinkUrl}>{club.rinkName}</a></p>
+
+  <h2>Who do I email about...</h2>
+  <table>
+    <tbody>{who.map(([topic, email]) => <tr><td>{topic}</td><td><a href={`mailto:${email}`}>{email}</a></td></tr>)}</tbody>
+  </table>
+
+  <h2>Board</h2>
+  <ul>{board.map(({ data }) => <li>{data.name}, {data.role}{data.email && <> · <a href={`mailto:${data.email}`}>{data.email}</a></>}</li>)}</ul>
+
+  <p>Follow us on <a href={club.instagram}>Instagram</a> and <a href={club.facebook}>Facebook</a>.</p>
+</Base>

@@ -1,0 +1,60 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { today, fmtRange } from '../lib/dates';
+
+const club = (await getEntry('settings', 'club'))!.data;
+const now = today();
+const sessions = (await getCollection('sessions', ({ data }) => data.lastClass >= now))
+  .sort((a, b) => a.data.firstClass.getTime() - b.data.firstClass.getTime());
+
+const levels = [
+  ['Ice Explorers', 'Ages 2 and 3', 'A gentle first time on the ice, with a parent nearby. Helmets required.'],
+  ['Snowplow Sam 1-4', 'Ages 3 to 6', 'Balance, marching and first glides. Helmets required.'],
+  ['Basic Skills 1-6', 'Ages 7 to 17, and adults', 'Forward and backward skating, stops, edges and turns.'],
+  ['Free Skate', 'After Basic 6', 'Spins, jumps and footwork, the start of figure skating.'],
+  ['Aspire', 'Basic 4 and above', 'Small-group sessions that bridge group classes and private lessons.'],
+  ['Hockey 1-4', 'Ages 5 and up', 'Skating skills for hockey players. Helmets required.'],
+];
+---
+<Base title="Learn to Skate" description={`Learn to Skate USA classes at ${club.rinkName} in Lancaster, PA, for ages 2 through adult. Six-week sessions with rental skates included.`}>
+  <h1>Learn to Skate</h1>
+  <p class="lead">Six-week group classes at {club.rinkName} using the Learn to Skate USA curriculum, for ages 2 through adult. Registration includes rental skates and a Learn to Skate USA membership.</p>
+
+  {sessions.length === 0 && <p class="notice">The next session hasn't been scheduled yet. Email <a href={`mailto:${club.learnToSkateEmail}`}>{club.learnToSkateEmail}</a> to be notified.</p>}
+
+  {sessions.map(({ data }) => (
+    <section>
+      <h2>{data.title}: {fmtRange(data.firstClass, data.lastClass)}</h2>
+      <p>{data.dayAndTime}. {data.price} per skater. {data.priceNote}</p>
+      <table>
+        <thead><tr><th>Class</th><th>Ages / level</th><th>Time</th><th></th></tr></thead>
+        <tbody>
+          {data.classes.map((c) => (
+            <tr><td>{c.name}</td><td>{c.ages}</td><td>{c.time}</td><td><a class="btn" href={c.registerUrl}>Register</a></td></tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  ))}
+
+  <h2>Which class is right for me?</h2>
+  <div class="cards">
+    {levels.map(([name, ages, text]) => (
+      <div class="card"><h3>{name}</h3><p><strong>{ages}.</strong> {text}</p></div>
+    ))}
+  </div>
+
+  <h2>Your first day</h2>
+  <ul>
+    <li>Arrive 15 minutes early to pick up rental skates.</li>
+    <li>Helmets are required for Ice Explorers, Snowplow Sam and Hockey.</li>
+    <li>Dress warm: gloves, long pants and layers.</li>
+    <li>Watch the <a href="https://youtu.be/HNuPKpiEm1g">orientation video</a> before you come.</li>
+  </ul>
+
+  <h2>Questions</h2>
+  <details><summary>How do skaters move up a level?</summary><p>Coaches evaluate every skater in the fifth lesson and share results at the last lesson. Skaters who pass register for the next level in the following session.</p></details>
+  <details><summary>Does Learn to Skate include club membership?</summary><p>Registration includes a Learn to Skate USA membership (July 1 to June 30), which covers group classes. Club membership is separate and is for skaters moving on to private lessons and freestyle ice. See <a href="/skate-with-us/membership">Membership</a>.</p></details>
+  <details><summary>Who do I contact?</summary><p>Email <a href={`mailto:${club.learnToSkateEmail}`}>{club.learnToSkateEmail}</a>.</p></details>
+</Base>

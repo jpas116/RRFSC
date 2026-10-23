@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+// TODO: replace with the club's Google Calendar ID (Settings > Integrate calendar in Google Calendar).
+const calendarId = 'REPLACE_WITH_CALENDAR_ID@group.calendar.google.com';
+---
+<Base title="Calendar" description="Freestyle ice, Learn to Skate classes and club events on the Red Rose Figure Skating Club calendar.">
+  <h1>Calendar</h1>
+  <p class="lead">Freestyle ice, classes and events. Tap an event for details.</p>
+  <iframe
+    src={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(calendarId)}&ctz=America%2FNew_York&mode=AGENDA&showTitle=0&showPrint=0&showTabs=1&showCalendars=0`}
+    style="border:0;width:100%;height:600px" title="RRFSC calendar" loading="lazy"></iframe>
+</Base>
