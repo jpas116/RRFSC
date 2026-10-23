@@ -9,6 +9,7 @@ const { title, description } = Astro.props;
 const club = (await getEntry('settings', 'club'))!.data;
 const year = new Date().getFullYear();
 const cleanPath = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+const canonical = new URL(cleanPath, Astro.site);
 const isHome = cleanPath === '/';
 ---
 <!doctype html>
@@ -18,7 +19,7 @@ const isHome = cleanPath === '/';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{isHome ? `${club.name} | Learn to Skate in Lancaster, PA` : `${title} | ${club.shortName}`}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(cleanPath, Astro.site)} />
+    <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta name="theme-color" content="#14233b" />

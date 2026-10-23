@@ -29,6 +29,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Remove this once www.rrfsc.org points at GitHub Pages and is set as the custom domain.
+          SITE_BASE: /RRFSC
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
