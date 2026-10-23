@@ -1,0 +1,79 @@
+---
+import { getEntry } from 'astro:content';
+import Nav from '../components/Nav.astro';
+import Logo from '../components/Logo.astro';
+import '../styles/global.css';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const club = (await getEntry('settings', 'club'))!.data;
+const year = new Date().getFullYear();
+const cleanPath = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+const isHome = cleanPath === '/';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{isHome ? `${club.name} | Learn to Skate in Lancaster, PA` : `${title} | ${club.shortName}`}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(cleanPath, Astro.site)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="theme-color" content="#14233b" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SportsClub',
+      name: club.name,
+      url: Astro.site,
+      address: club.address,
+      email: club.generalEmail,
+      sameAs: [club.instagram, club.facebook],
+    })} />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap">
+        <a class="brand" href="/"><Logo /><span>Red Rose FSC<small>Lancaster, PA · est. 2001</small></span></a>
+        <Nav />
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site">
+      <div class="wrap">
+        <div class="cols">
+          <div>
+            <h3>{club.name}</h3>
+            <p>{club.address}</p>
+            <p>Skating at <a href={club.rinkUrl}>{club.rinkName}</a></p>
+            <p><a href={`mailto:${club.generalEmail}`}>{club.generalEmail}</a></p>
+          </div>
+          <div>
+            <h3>Skaters</h3>
+            <p><a href="/learn-to-skate">Learn to Skate</a></p>
+            <p><a href="/skate-with-us/membership">Membership</a></p>
+            <p><a href="/skate-with-us/freestyle-ice">Freestyle Ice</a></p>
+            <p><a href="/skate-with-us/test-sessions">Test Sessions</a></p>
+          </div>
+          <div>
+            <h3>Club</h3>
+            <p><a href="/coaches">Coaches</a></p>
+            <p><a href="/events">Events</a></p>
+            <p><a href="/faqs">FAQs</a></p>
+            <p><a href="/about">About</a> · <a href="/contact">Contact</a></p>
+          </div>
+          <div>
+            <h3>Follow</h3>
+            <p><a href={club.instagram}>Instagram</a></p>
+            <p><a href={club.facebook}>Facebook</a></p>
+            <p>A member club of <a href="https://www.usfigureskating.org/">US Figure Skating</a></p>
+          </div>
+        </div>
+        <p class="fine">© {year} {club.name}, a 501(c)(3) non-profit.</p>
+      </div>
+    </footer>
+  </body>
+</html>

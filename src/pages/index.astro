@@ -1,0 +1,63 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { today, fmtRange } from '../lib/dates';
+
+const club = (await getEntry('settings', 'club'))!.data;
+const now = today();
+const session = (await getCollection('sessions', ({ data }) => data.lastClass >= now))
+  .sort((a, b) => a.data.firstClass.getTime() - b.data.firstClass.getTime())[0];
+const announcements = await getCollection('announcements', ({ data }) => data.showUntil >= now);
+---
+<Base title="Home" description={`${club.name}: Learn to Skate classes, private lessons, freestyle ice and US Figure Skating test sessions at ${club.rinkName} in Lancaster, PA.`}>
+  <section class="hero">
+    <p class="eyebrow" style="color:#f3b7c4">A US Figure Skating member club</p>
+    <h1>{club.tagline}</h1>
+    <p class="lead">Group lessons for beginners of every age, private coaching, freestyle ice and test sessions at {club.rinkName}.</p>
+    <div class="actions">
+      <a class="btn" href="/learn-to-skate">Register for Learn to Skate</a>
+      <a class="btn secondary" href="/skate-with-us/freestyle-ice">Freestyle ice schedule</a>
+    </div>
+    <span class="photo-note">Photo goes here</span>
+  </section>
+
+  {announcements.map(({ data }) => (
+    <div class="notice">
+      <strong>{data.title}.</strong> {data.body} {data.linkUrl && <a href={data.linkUrl}>{data.linkText ?? 'Read more'}</a>}
+    </div>
+  ))}
+
+  {session && (
+    <section class="glance">
+      <h2 style="margin-top:0">Now enrolling: {session.data.title}</h2>
+      <dl>
+        <dt>Dates</dt><dd>{fmtRange(session.data.firstClass, session.data.lastClass)}</dd>
+        <dt>When</dt><dd>{session.data.dayAndTime}</dd>
+        <dt>Price</dt><dd>{session.data.price} per skater. {session.data.priceNote}</dd>
+      </dl>
+      <a class="btn" href="/learn-to-skate">See classes and register</a>
+    </section>
+  )}
+
+  <h2>Where do you want to start?</h2>
+  <section class="cards">
+    <div class="card link">
+      <h3>I'm new to skating</h3>
+      <p>Six-week Learn to Skate sessions for ages 2 through adult, with rental skates included.</p>
+      <span class="spacer"></span>
+      <a class="cover" href="/learn-to-skate">Learn to Skate →</a>
+    </div>
+    <div class="card link">
+      <h3>I already skate</h3>
+      <p>Club membership, freestyle ice times and rates, and US Figure Skating test sessions.</p>
+      <span class="spacer"></span>
+      <a class="cover" href="/skate-with-us">Skate with us →</a>
+    </div>
+    <div class="card link">
+      <h3>I'm looking for a coach</h3>
+      <p>Nine certified coaches for private lessons, from first crossovers to gold tests.</p>
+      <span class="spacer"></span>
+      <a class="cover" href="/coaches">Meet the coaches →</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,34 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { inline } from '../../lib/dates';
+const t = (await getEntry('settings', 'tests'))!.data;
+---
+<Base title="Test Sessions" description="US Figure Skating test sessions at Red Rose Figure Skating Club: next date, deadlines, fees and how to register on EntryEeze.">
+  <h1>Test Sessions</h1>
+  <p class="lead">We host several US Figure Skating sanctioned test sessions each year. All registration is online through EntryEeze.</p>
+
+  <section class="glance">
+    <dl>
+      <dt>Next session</dt><dd>{t.nextDate || 'To be announced'}</dd>
+      <dt>Registration closes</dt><dd>{t.registrationDeadline || 'Two weeks before the test date'}</dd>
+      <dt>Late fee</dt><dd>{t.lateFee}, if space remains</dd>
+      <dt>Test chair</dt><dd>{t.testChairName}, <a href={`mailto:${t.testChairEmail}`}>{t.testChairEmail}</a></dd>
+    </dl>
+    <a class="btn" href={t.registerUrl}>Register on EntryEeze</a>
+  </section>
+
+  <h2>How to register</h2>
+  <div class="cards">
+    <div class="card"><h3>RRFSC and reciprocal club members</h3><p>Log in to EntryEeze and use the Test Sessions tab. Reciprocal clubs ({t.reciprocalClubs.join(', ')}) pay no non-member fee.</p></div>
+    <div class="card"><h3>Members of other clubs</h3><p>Use the Non Member link on the EntryEeze login page (it appears only while a session is open). Bring a permission-to-test letter from your home club. A {t.nonMemberFee} non-member fee applies.</p></div>
+  </div>
+
+  <h2>Policies</h2>
+  {t.policies.map((p: any) => (
+    <details>
+      <summary>{p.heading}</summary>
+      <ul>{p.items.map((item: string) => <li set:html={inline(item)} />)}</ul>
+    </details>
+  ))}
+</Base>

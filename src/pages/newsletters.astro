@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+// TODO: copy the 25 newsletter PDFs from Wix into public/docs/newsletters/ and list them here.
+const issues: [string, string][] = [];
+---
+<Base title="Newsletter archive" description="Past Red Rose Figure Skating Club newsletters, 2016 to 2019.">
+  <h1>Newsletter archive</h1>
+  {issues.length === 0 ? <p>The archive is being moved over. Check back soon.</p> : <ul>{issues.map(([label, href]) => <li><a href={href}>{label}</a></li>)}</ul>}
+</Base>

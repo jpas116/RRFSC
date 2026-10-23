@@ -1,0 +1,216 @@
+# Pages CMS configuration (https://pagescms.org).
+# Volunteers sign in at app.pagescms.org with a GitHub account, pick this repo,
+# and edit the collections below through forms. Saves commit to main, which
+# triggers the deploy workflow.
+
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: sessions
+    label: Learn to Skate sessions
+    description: One entry per six-week session. Past sessions drop off the site automatically after the last class.
+    type: collection
+    path: src/content/sessions
+    format: yaml
+    filename: "{year}-{fields.title}.yaml"
+    view:
+      fields: [title, firstClass, lastClass, price]
+      sort: [firstClass]
+    fields:
+      - { name: title, label: Session name, type: string, required: true, description: "For example: Fall II Session" }
+      - { name: firstClass, label: First class, type: date, required: true }
+      - { name: lastClass, label: Last class, type: date, required: true }
+      - { name: dayAndTime, label: Day and time, type: string, required: true, description: "For example: Mondays, 4:30 - 5:30 PM" }
+      - { name: price, label: Price, type: string, required: true, description: "For example: $140" }
+      - { name: priceNote, label: What the price includes, type: string }
+      - name: classes
+        label: Classes
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Class, type: string, required: true }
+          - { name: ages, label: Ages or level, type: string, required: true }
+          - { name: time, label: Time, type: string, required: true }
+          - { name: registerUrl, label: RegFox link, type: string, required: true }
+
+  - name: events
+    label: Events
+    description: Competitions, shows and fundraisers. Past events move to the archive on their own.
+    type: collection
+    path: src/content/events
+    format: yaml
+    view:
+      fields: [title, date]
+      sort: [date]
+    fields:
+      - { name: title, label: Event, type: string, required: true }
+      - { name: date, label: Date, type: date, required: true }
+      - { name: endDate, label: End date (multi-day events), type: date }
+      - { name: summary, label: One-line description, type: string }
+      - { name: registerUrl, label: Registration or ticket link, type: string }
+      - { name: image, label: Image, type: image }
+
+  - name: announcements
+    label: Home page announcements
+    description: Short notices on the home page. Each one disappears after its "show until" date.
+    type: collection
+    path: src/content/announcements
+    format: yaml
+    fields:
+      - { name: title, label: Headline, type: string, required: true }
+      - { name: body, label: One or two sentences, type: text, required: true }
+      - { name: linkUrl, label: Link (optional), type: string }
+      - { name: linkText, label: Link text, type: string }
+      - { name: showUntil, label: Show until, type: date, required: true }
+
+  - name: coaches
+    label: Coaches
+    type: collection
+    path: src/content/coaches
+    format: yaml
+    view:
+      fields: [name, role]
+      sort: [order]
+    fields:
+      - { name: name, label: Name, type: string, required: true }
+      - { name: role, label: Role (for example, Skating Director), type: string }
+      - { name: photo, label: Headshot, type: image }
+      - { name: phone, label: Phone, type: string }
+      - { name: email, label: Email, type: string }
+      - { name: specialties, label: Specialties (2 or 3), type: string, list: true }
+      - { name: skatingHistory, label: Skating history, type: string, list: true }
+      - { name: coachingExpertise, label: Coaching expertise, type: string, list: true }
+      - { name: highestStudentTest, label: Highest student test passed, type: string }
+      - { name: availableForPrivateLessons, label: Available for private lessons, type: boolean, default: true }
+      - { name: order, label: Display order, type: number, default: 100 }
+
+  - name: faqs
+    label: FAQs
+    type: collection
+    path: src/content/faqs
+    format: yaml
+    view:
+      fields: [question, group]
+      sort: [group, order]
+    fields:
+      - { name: question, label: Question, type: string, required: true }
+      - name: group
+        label: Group
+        type: select
+        required: true
+        options:
+          values: [Getting started, Coaches and lessons, Skates and gear, Freestyle, Testing and progress]
+      - { name: answer, label: Answer (aim for 60 words or less), type: text, required: true }
+      - { name: order, label: Order within group, type: number, default: 100 }
+
+  - name: board
+    label: Board members
+    type: collection
+    path: src/content/board
+    format: yaml
+    view:
+      sort: [order]
+    fields:
+      - { name: name, label: Name, type: string, required: true }
+      - { name: role, label: Role, type: string, required: true }
+      - { name: email, label: Email, type: string }
+      - { name: order, label: Display order, type: number, default: 100 }
+
+  - name: club
+    label: Club details
+    type: file
+    path: src/content/settings/club.yaml
+    format: yaml
+    fields:
+      - { name: name, label: Club name, type: string }
+      - { name: tagline, label: Home page headline, type: string }
+      - { name: address, label: Address, type: string }
+      - { name: rinkName, label: Rink, type: string }
+      - { name: rinkUrl, label: Rink website, type: string }
+      - { name: generalEmail, label: General email, type: string }
+      - { name: learnToSkateEmail, label: Learn to Skate email, type: string }
+      - { name: membershipChairEmail, label: Membership Chair email, type: string }
+      - { name: entryEezeUrl, label: EntryEeze link, type: string }
+      - { name: instagram, label: Instagram, type: string }
+      - { name: facebook, label: Facebook, type: string }
+      - { name: membershipYearStart, label: Membership year starts, type: string }
+      - { name: membershipYearEnd, label: Membership year ends, type: string }
+
+  - name: freestyle
+    label: Freestyle ice
+    type: file
+    path: src/content/settings/freestyle.yaml
+    format: yaml
+    fields:
+      - name: schedule
+        label: Weekly schedule
+        type: object
+        list: true
+        fields:
+          - { name: day, label: Day, type: string }
+          - { name: times, label: Times, type: string }
+      - name: rates
+        label: Rates
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Who, type: string }
+          - { name: halfHour, label: 30 minutes, type: string }
+          - { name: hour, label: 1 hour, type: string }
+      - name: bulkPass
+        label: Prepaid pass
+        type: object
+        fields:
+          - { name: label, label: Name, type: string }
+          - { name: price, label: Price, type: string }
+          - { name: url, label: Where to buy, type: string }
+      - { name: requirement, label: Who can skate, type: text }
+      - { name: etiquette, label: Ice etiquette rules, type: string, list: true }
+      - name: documents
+        label: Documents
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: file, label: PDF path, type: string }
+
+  - name: tests
+    label: Test sessions
+    type: file
+    path: src/content/settings/tests.yaml
+    format: yaml
+    fields:
+      - { name: nextDate, label: Next test date (blank = to be announced), type: string }
+      - { name: registrationDeadline, label: Registration deadline, type: string }
+      - { name: registerUrl, label: EntryEeze link, type: string }
+      - { name: testChairName, label: Test chair, type: string }
+      - { name: testChairEmail, label: Test chair email, type: string }
+      - { name: nonMemberFee, label: Non-member fee, type: string }
+      - { name: lateFee, label: Late fee, type: string }
+      - { name: reciprocalClubs, label: Reciprocal clubs, type: string, list: true }
+      - name: policies
+        label: Policies
+        type: object
+        list: true
+        fields:
+          - { name: heading, label: Heading, type: string }
+          - { name: items, label: Rules (use **bold** for the lead words), type: string, list: true }
+
+  - name: membership
+    label: Membership
+    type: file
+    path: src/content/settings/membership.yaml
+    format: yaml
+    fields:
+      - { name: season, label: Season, type: string }
+      - name: rates
+        label: Rates
+        type: object
+        list: true
+        fields:
+          - { name: type, label: Membership type, type: string }
+          - { name: price, label: Price, type: string }
+      - { name: rateNote, label: Note under the rates, type: string }
+      - { name: processingNote, label: Processing note, type: text }

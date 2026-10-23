@@ -1,0 +1,35 @@
+# Weekly freestyle ice. Edit times here and they update on Home and Freestyle Ice.
+schedule:
+  - day: Monday
+    times: "3:00 - 4:30 PM"
+  - day: Tuesday
+    times: "See calendar for current times"
+  - day: Thursday
+    times: "5:30 - 8:30 AM"
+  - day: Friday
+    times: "3:30 - 5:30 PM"
+rates:
+  - label: Members
+    halfHour: "$10"
+    hour: "$15"
+  - label: Non-members
+    halfHour: "$15"
+    hour: "$20"
+bulkPass:
+  label: 10-hour prepaid pass (members)
+  price: "$140"
+  url: https://comp.entryeeze.com/Membership/Welcome.aspx?cid=273
+requirement: Skaters must hold a current US Figure Skating, Learn to Skate USA or USA Hockey membership.
+etiquette:
+  - Skaters running their program (music playing) have the right of way.
+  - Skaters in a lesson have the right of way after that.
+  - Stay aware of the skaters around you.
+  - Be respectful of other skaters.
+  - Never stop or hold conversations in the middle of the ice.
+  - Headphones may not be worn on the ice.
+  - Cellphones stay by the boards at all times.
+documents:
+  - title: Ice Rules
+    file: /docs/ice-rules.pdf
+  - title: Skater Drop Off Policy
+    file: /docs/skater-drop-off-policy.pdf

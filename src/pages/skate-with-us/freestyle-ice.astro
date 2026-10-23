@@ -1,0 +1,28 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+const club = (await getEntry('settings', 'club'))!.data;
+const f = (await getEntry('settings', 'freestyle'))!.data;
+---
+<Base title="Freestyle Ice" description={`Weekly freestyle practice ice at ${club.rinkName}: times, member and non-member rates, and ice etiquette.`}>
+  <h1>Freestyle Ice</h1>
+  <p class="lead">Practice ice for skaters working on skills, programs and private lessons. {f.requirement}</p>
+
+  <h2>Weekly schedule</h2>
+  <table>
+    <thead><tr><th>Day</th><th>Times</th></tr></thead>
+    <tbody>{f.schedule.map((s: any) => <tr><td>{s.day}</td><td>{s.times}</td></tr>)}</tbody>
+  </table>
+  <p>Times change around holidays and events. The <a href="/calendar">calendar</a> is always current.</p>
+
+  <h2>Rates</h2>
+  <table>
+    <thead><tr><th></th><th>30 minutes</th><th>1 hour</th></tr></thead>
+    <tbody>{f.rates.map((r: any) => <tr><td>{r.label}</td><td>{r.halfHour}</td><td>{r.hour}</td></tr>)}</tbody>
+  </table>
+  <p>{f.bulkPass.label}: {f.bulkPass.price}. <a href={f.bulkPass.url}>Buy a pass on EntryEeze</a>.</p>
+
+  <h2>Ice etiquette</h2>
+  <ol>{f.etiquette.map((rule: string) => <li>{rule}</li>)}</ol>
+  <p>{f.documents.map((d: any, i: number) => <>{i > 0 && ' · '}<a href={d.file}>{d.title} (PDF)</a></>)}</p>
+</Base>

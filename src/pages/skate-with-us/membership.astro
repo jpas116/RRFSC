@@ -1,0 +1,26 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+const club = (await getEntry('settings', 'club'))!.data;
+const m = (await getEntry('settings', 'membership'))!.data;
+---
+<Base title="Membership" description={`Join Red Rose Figure Skating Club for the ${m.season} season. Rates, how to apply and what membership includes.`}>
+  <h1>Membership</h1>
+  <p class="lead">The membership year runs {club.membershipYearStart} to {club.membershipYearEnd}. You can join at any time.</p>
+
+  <h2>How to join</h2>
+  <ol class="steps">
+    <li>Apply and pay on <a href={club.entryEezeUrl}>EntryEeze</a>.</li>
+    <li>Allow one full week for your application to be processed.</li>
+    <li>Once approved, you're set for freestyle ice and test sessions.</li>
+  </ol>
+  <p><a class="btn" href={club.entryEezeUrl}>Apply on EntryEeze</a></p>
+
+  <h2>Rates for {m.season}</h2>
+  <table>
+    <thead><tr><th>Membership type</th><th>Price</th></tr></thead>
+    <tbody>{m.rates.map((r: any) => <tr><td>{r.type}</td><td>{r.price}</td></tr>)}</tbody>
+  </table>
+  <p>{m.rateNote}</p>
+  <p>Questions? Email the Membership Chair at <a href={`mailto:${club.membershipChairEmail}`}>{club.membershipChairEmail}</a>.</p>
+</Base>

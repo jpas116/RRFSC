@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { inline } from '../lib/dates';
+const faqs = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
+const groups = [...new Set(faqs.map((f) => f.data.group))];
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+---
+<Base title="FAQs" description="Answers to common questions about starting figure skating, choosing a coach, skates, freestyle ice and testing at Red Rose Figure Skating Club.">
+  <h1>Frequently asked questions</h1>
+  <ul class="jump">{groups.map((g) => <li><a href={`#${slug(g)}`}>{g}</a></li>)}</ul>
+  {groups.map((g) => (
+    <section>
+      <h2 id={slug(g)}>{g}</h2>
+      {faqs.filter((f) => f.data.group === g).map(({ data }) => (
+        <details><summary>{data.question}</summary><p set:html={inline(data.answer)} /></details>
+      ))}
+    </section>
+  ))}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.data.question, acceptedAnswer: { '@type': 'Answer', text: f.data.answer } })),
+  })} />
+</Base>
