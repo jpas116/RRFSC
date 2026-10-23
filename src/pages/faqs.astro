@@ -8,7 +8,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 ---
 <Base title="FAQs" description="Answers to common questions about starting figure skating, choosing a coach, skates, freestyle ice and testing at Red Rose Figure Skating Club.">
   <h1>Frequently asked questions</h1>
-  <p class="lead">{groups.map((g, i) => <>{i > 0 && ' · '}<a href={`#${slug(g)}`}>{g}</a></>)}</p>
+  <ul class="jump">{groups.map((g) => <li><a href={`#${slug(g)}`}>{g}</a></li>)}</ul>
   {groups.map((g) => (
     <section>
       <h2 id={slug(g)}>{g}</h2>

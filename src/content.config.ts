@@ -40,6 +40,7 @@ const coaches = defineCollection({
       email: z.string().email().or(z.literal("")).optional(),
       specialties: z.array(z.string()).default([]),
       skatingHistory: z.array(z.string()).default([]),
+      coachingExpertise: z.array(z.string()).default([]),
       highestStudentTest: z.string().optional(),
       availableForPrivateLessons: z.boolean().default(true),
       order: z.number().default(100),

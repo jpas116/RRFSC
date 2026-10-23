@@ -1,10 +1,24 @@
 name: Ursula Wolfer-Horowitz
 role: Skating Director
 photo: /images/coaches/ursula-wolfer-horowitz.jpg
-phone: ""          # TODO copy from rrfsc.org/coaches
-# email: coach@example.com   # TODO confirm with the coach, then remove the leading #
-specialties: []    # 2 or 3 short items, e.g. "Beginners", "Moves in the Field"
-skatingHistory: [] # bullets from the current bio
-highestStudentTest: ""
+phone: 717.418.4545
+email: ursulawolfer@gmail.com
+specialties:
+- Freestyle
+- Choreography
+- Show and audition prep
+skatingHistory:
+- Passed Senior Moves in the Field, Senior Freestyle, Silver Dance, 2 Pre-Gold Dances and 5th Figures Test
+- 7 years as a professional skater, including 4 with Disney on Ice (2001-2008)
+- US National Synchronized Skating silver medalist (2000)
+- US National Collegiate Senior Ladies finalist, University of Delaware (1998-2000)
+- Senior Ladies champion at Cherry Blossom Invitational, Hershey Open and Philadelphia Area events (1998-2000)
+- Swiss Junior National competitor (1996); South Atlantic Junior Ladies silver medalist (1995)
+coachingExpertise:
+- Registered and insured coach, coaching since 1997
+- Coached competitors at Regional, Sectional, Junior, Collegiate, Showcase and Adult National events
+- Moves in the Field, group production numbers and theatrics
+- B.A. in Theater Production, University of Delaware
+highestStudentTest: Senior Moves in the Field; Senior Freestyle
 availableForPrivateLessons: true
 order: 9

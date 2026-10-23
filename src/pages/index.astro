@@ -11,12 +11,14 @@ const announcements = await getCollection('announcements', ({ data }) => data.sh
 ---
 <Base title="Home" description={`${club.name}: Learn to Skate classes, private lessons, freestyle ice and US Figure Skating test sessions at ${club.rinkName} in Lancaster, PA.`}>
   <section class="hero">
+    <p class="eyebrow" style="color:#f3b7c4">A US Figure Skating member club</p>
     <h1>{club.tagline}</h1>
     <p class="lead">Group lessons for beginners of every age, private coaching, freestyle ice and test sessions at {club.rinkName}.</p>
     <div class="actions">
       <a class="btn" href="/learn-to-skate">Register for Learn to Skate</a>
       <a class="btn secondary" href="/skate-with-us/freestyle-ice">Freestyle ice schedule</a>
     </div>
+    <span class="photo-note">Photo goes here</span>
   </section>
 
   {announcements.map(({ data }) => (
@@ -37,21 +39,25 @@ const announcements = await getCollection('announcements', ({ data }) => data.sh
     </section>
   )}
 
+  <h2>Where do you want to start?</h2>
   <section class="cards">
-    <div class="card">
-      <h3>New to skating?</h3>
-      <p>Six-week Learn to Skate sessions for ages 2 through adult. Rental skates included.</p>
-      <a href="/learn-to-skate">Learn to Skate</a>
+    <div class="card link">
+      <h3>I'm new to skating</h3>
+      <p>Six-week Learn to Skate sessions for ages 2 through adult, with rental skates included.</p>
+      <span class="spacer"></span>
+      <a class="cover" href="/learn-to-skate">Learn to Skate →</a>
     </div>
-    <div class="card">
-      <h3>Skating with us</h3>
-      <p>Membership, freestyle ice times and rates, and US Figure Skating test sessions.</p>
-      <a href="/skate-with-us">Skate with us</a>
+    <div class="card link">
+      <h3>I already skate</h3>
+      <p>Club membership, freestyle ice times and rates, and US Figure Skating test sessions.</p>
+      <span class="spacer"></span>
+      <a class="cover" href="/skate-with-us">Skate with us →</a>
     </div>
-    <div class="card">
-      <h3>Coaches</h3>
-      <p>Private lessons with certified US Figure Skating coaches.</p>
-      <a href="/coaches">Meet the coaches</a>
+    <div class="card link">
+      <h3>I'm looking for a coach</h3>
+      <p>Nine certified coaches for private lessons, from first crossovers to gold tests.</p>
+      <span class="spacer"></span>
+      <a class="cover" href="/coaches">Meet the coaches →</a>
     </div>
   </section>
 </Base>

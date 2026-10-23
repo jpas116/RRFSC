@@ -8,12 +8,18 @@ const items = [
   ['/about', 'About'],
   ['/contact', 'Contact'],
 ];
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+const current = (href: string) => path === href || path.startsWith(href + '/');
 ---
 <nav class="main" aria-label="Main">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+  <label for="nav-toggle" class="nav-button" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </label>
   <ul>
     {items.map(([href, label]) => (
-      <li><a href={href} aria-current={path === href || (href !== '/' && path.startsWith(href + '/')) ? 'page' : undefined}>{label}</a></li>
+      <li><a href={href} aria-current={current(href) ? 'page' : undefined}>{label}</a></li>
     ))}
+    <li class="nav-cta"><a class="btn small" href="/learn-to-skate">Register</a></li>
   </ul>
 </nav>

@@ -1,6 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { existsSync } from 'node:fs';
+const hasPhoto = (p?: string) => !!p && existsSync(`public${p}`);
+const initials = (n: string) => n.split(' ').filter(Boolean).map((w) => w[0]).slice(0, 2).join('');
 const coaches = (await getCollection('coaches')).sort((a, b) => a.data.order - b.data.order);
 ---
 <Base title="Coaches" description="Certified US Figure Skating coaches at Red Rose Figure Skating Club, available for private lessons at Regency Ice Rink in Lancaster, PA.">
@@ -8,19 +11,21 @@ const coaches = (await getCollection('coaches')).sort((a, b) => a.data.order - b
   <p class="lead">Private lessons happen on freestyle ice and are arranged directly with the coach. Not sure who to pick? See <a href="/faqs#coaches-and-lessons">how to choose a coach</a>.</p>
   <div class="cards">
     {coaches.map(({ data }) => (
-      <div class="card">
-        {data.photo && <img src={data.photo} alt={`${data.name}, RRFSC coach`} width="120" height="120" loading="lazy" style="border-radius:50%;object-fit:cover" />}
+      <div class="card coach">
+        {hasPhoto(data.photo)
+          ? <img class="avatar" src={data.photo} alt={`${data.name}, RRFSC coach`} width="88" height="88" loading="lazy" />
+          : <div class="avatar" aria-hidden="true">{initials(data.name)}</div>}
         <h3>{data.name}</h3>
-        {data.role && <p><strong>{data.role}</strong></p>}
-        {data.specialties.length > 0 && <p>{data.specialties.join(' · ')}</p>}
-        <p>
-          {data.email && <a href={`mailto:${data.email}`}>Email</a>}
-          {data.email && data.phone && ' · '}
-          {data.phone && <a href={`tel:${data.phone.replace(/\D/g, '')}`}>{data.phone}</a>}
-        </p>
-        {data.skatingHistory.length > 0 && (
-          <details><summary>Skating and coaching background</summary>
-            <ul>{data.skatingHistory.map((h) => <li>{h}</li>)}</ul>
+        {data.role && <p class="eyebrow">{data.role}</p>}
+        {data.specialties.length > 0 && <ul class="tags">{data.specialties.map((t) => <li>{t}</li>)}</ul>}
+        <div class="contact">
+          {data.email && <a class="btn small" href={`mailto:${data.email}`}>Email</a>}
+          {data.phone && <a class="btn small secondary" href={`tel:${data.phone.replace(/\D/g, '')}`}>{data.phone}</a>}
+        </div>
+        {(data.skatingHistory.length > 0 || data.coachingExpertise.length > 0) && (
+          <details><summary>Background</summary>
+            {data.skatingHistory.length > 0 && <><strong>Skating</strong><ul>{data.skatingHistory.map((h) => <li>{h}</li>)}</ul></>}
+            {data.coachingExpertise.length > 0 && <><strong>Coaching</strong><ul>{data.coachingExpertise.map((h) => <li>{h}</li>)}</ul></>}
             {data.highestStudentTest && <p>Highest student test passed: {data.highestStudentTest}</p>}
           </details>
         )}

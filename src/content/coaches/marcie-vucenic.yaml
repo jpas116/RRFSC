@@ -1,10 +1,23 @@
 name: Marcie Vucenic
 role: Skating Director
 photo: /images/coaches/marcie-vucenic.jpg
-phone: ""          # TODO copy from rrfsc.org/coaches
-# email: coach@example.com   # TODO confirm with the coach, then remove the leading #
-specialties: []    # 2 or 3 short items, e.g. "Beginners", "Moves in the Field"
-skatingHistory: [] # bullets from the current bio
-highestStudentTest: ""
+phone: 561.267.0158
+email: vucenic6@ptd.net
+specialties:
+- Freestyle
+- Moves in the Field
+- Power skating
+skatingHistory:
+- Competitive skater for 8 years; selected by Disney on Ice
+- Passed 2nd Figures Test, Juvenile Freestyle and Intermediate Moves in the Field
+- Intermediate silver and Pre-Juvenile silver medalist, Florida Open
+- Juvenile gold and bronze medalist, Sun Coast Invitational
+coachingExpertise:
+- Registered and insured coach, coaching since 1993
+- Learn to Skate coach
+- Director of Skating, York City Ice Arena
+- ISI member since 1982; Silver Certified Judge for ISI competitions
+- Coached Keystone State champions, medalists and Regional competitors
+highestStudentTest: US Figure Skating Gold Tests
 availableForPrivateLessons: true
 order: 8

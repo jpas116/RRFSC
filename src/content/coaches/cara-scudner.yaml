@@ -1,10 +1,21 @@
 name: Cara Scudner
-role: ""
+role: ''
 photo: /images/coaches/cara-scudner.jpg
-phone: ""          # TODO copy from rrfsc.org/coaches
-# email: coach@example.com   # TODO confirm with the coach, then remove the leading #
-specialties: []    # 2 or 3 short items, e.g. "Beginners", "Moves in the Field"
-skatingHistory: [] # bullets from the current bio
-highestStudentTest: ""
+phone: 717.413.9237
+email: carascudnerusfs@gmail.com
+specialties:
+- Freestyle
+- Adult skaters
+- Preschool skaters
+skatingHistory:
+- Passed USFS Adult Gold Moves in the Field, Adult Gold Freestyle, Novice Moves in the Field, Juvenile Freestyle, Pre-Gold and 2 Gold Dances
+- Nine USFS Adult Championships and nine Adult Eastern Sectionals (2014-2024)
+- RRFSC member since 2004; performed in club shows 2004-2016
+coachingExpertise:
+- Registered and insured coach
+- Learn to Skate instructor since 2008
+- Moves in the Field
+- B.F.A. in Fashion Design, Moore College of Art and Design; owner of Cara Anne Designs skating apparel
+highestStudentTest: ''
 availableForPrivateLessons: true
 order: 6

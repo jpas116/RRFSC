@@ -80,7 +80,8 @@ content:
       - { name: phone, label: Phone, type: string }
       - { name: email, label: Email, type: string }
       - { name: specialties, label: Specialties (2 or 3), type: string, list: true }
-      - { name: skatingHistory, label: Skating and coaching background, type: string, list: true }
+      - { name: skatingHistory, label: Skating history, type: string, list: true }
+      - { name: coachingExpertise, label: Coaching expertise, type: string, list: true }
       - { name: highestStudentTest, label: Highest student test passed, type: string }
       - { name: availableForPrivateLessons, label: Available for private lessons, type: boolean, default: true }
       - { name: order, label: Display order, type: number, default: 100 }

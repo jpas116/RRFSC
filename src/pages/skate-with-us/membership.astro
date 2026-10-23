@@ -9,7 +9,7 @@ const m = (await getEntry('settings', 'membership'))!.data;
   <p class="lead">The membership year runs {club.membershipYearStart} to {club.membershipYearEnd}. You can join at any time.</p>
 
   <h2>How to join</h2>
-  <ol>
+  <ol class="steps">
     <li>Apply and pay on <a href={club.entryEezeUrl}>EntryEeze</a>.</li>
     <li>Allow one full week for your application to be processed.</li>
     <li>Once approved, you're set for freestyle ice and test sessions.</li>

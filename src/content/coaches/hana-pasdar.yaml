@@ -1,10 +1,23 @@
 name: Hana Friedman Pasdar
-role: ""
+role: ''
 photo: /images/coaches/hana-pasdar.jpg
-phone: ""          # TODO copy from rrfsc.org/coaches
-# email: coach@example.com   # TODO confirm with the coach, then remove the leading #
-specialties: []    # 2 or 3 short items, e.g. "Beginners", "Moves in the Field"
-skatingHistory: [] # bullets from the current bio
-highestStudentTest: ""
+phone: 717.330.2371
+email: hfriedman94@icloud.com
+specialties:
+- Moves in the Field
+- Freestyle
+- Synchronized skating
+skatingHistory:
+- Passed Senior Moves in the Field, Gold Dances and Juvenile Freestyle
+- Competitive freestyle skater and Red Rose Theater on Ice performer (2006-2013)
+- University of Delaware Synchronized Skating Team (2013-2017), team president 2016-2017
+- Eastern Synchronized Skating Sectional gold medalist (2013-2017)
+- US Synchronized Skating Championship competitor (2011, 2013-2017) and Collegiate pewter medalist (2015)
+coachingExpertise:
+- Registered and insured coach
+- Learn to Skate coach
+- Edgework
+- B.S. in Hospitality Business Management, University of Delaware
+highestStudentTest: ''
 availableForPrivateLessons: true
 order: 4

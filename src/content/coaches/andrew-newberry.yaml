@@ -1,10 +1,23 @@
 name: Andrew Newberry
-role: ""
+role: ''
 photo: /images/coaches/andrew-newberry.jpg
-phone: ""          # TODO copy from rrfsc.org/coaches
-# email: coach@example.com   # TODO confirm with the coach, then remove the leading #
-specialties: []    # 2 or 3 short items, e.g. "Beginners", "Moves in the Field"
-skatingHistory: [] # bullets from the current bio
-highestStudentTest: ""
+phone: 302.563.1197
+email: Acnewbs1@comcast.net
+specialties:
+- Ice dance
+- Moves in the Field
+- Choreography
+skatingHistory:
+- Passed USFS Gold Medal Ice Dance
+- Trained from 1977 under world and Olympic coaches including Dame Joan Slater, Anne Crompton, Gary and Doreen Hoppe and Ian Phillips
+- British Primary Ice Dance champion (1982)
+- British Junior Ice Dance bronze medalist (1983)
+coachingExpertise:
+- Registered and insured coach, coaching since 1990
+- Coached USFS Intermediate, Juvenile and Novice dance medalists, North American Challenge medalists, a British Senior Solo Dance champion and Junior Grand Prix competitors
+- Coaching member of the USFS Dance Committee
+- Freestyle, edgework and program stylization
+- Skate sharpening, fittings and other skate services
+highestStudentTest: Gold and International Dance; Senior Moves in the Field; Senior Freestyle
 availableForPrivateLessons: true
 order: 3
